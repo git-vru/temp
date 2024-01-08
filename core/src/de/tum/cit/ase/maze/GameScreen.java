@@ -26,7 +26,6 @@ public class GameScreen implements Screen {
      */
     public GameScreen(MazeRunnerGame game) {
         this.game = game;
-
         // Create and configure the camera for the game view
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
@@ -34,6 +33,8 @@ public class GameScreen implements Screen {
 
         // Get the font from the game's skin
         font = game.getSkin().getFont("font");
+
+
     }
 
 
@@ -58,7 +59,6 @@ public class GameScreen implements Screen {
         game.getSpriteBatch().setProjectionMatrix(camera.combined);
 
         game.getSpriteBatch().begin(); // Important to call this before drawing anything
-
         // Render the text
         font.draw(game.getSpriteBatch(), "Press ESC to go to menu", textX, textY);
 
@@ -71,7 +71,9 @@ public class GameScreen implements Screen {
                 128
         );
 
+
         game.getSpriteBatch().end(); // Important to call this after drawing everything
+        game.createMaze();
     }
 
     @Override
@@ -102,3 +104,4 @@ public class GameScreen implements Screen {
 
     // Additional methods and logic can be added as needed for the game screen
 }
+
