@@ -24,14 +24,17 @@ public class MenuScreen implements Screen {
     private final Stage stage;
     private final Texture backgroundTexture;
     private final SpriteBatch batch;
+    private final MazeBuilder mazeBuilder;
 
 
     /**
      * Constructor for MenuScreen. Sets up the camera, viewport, stage, and UI elements.
      *
-     * @param game The main game class, used to access global resources and methods.
+     * @param game        The main game class, used to access global resources and methods.
+     * @param mazeBuilder
      */
-    public MenuScreen(MazeRunnerGame game) {
+    public MenuScreen(MazeRunnerGame game, MazeBuilder mazeBuilder) {
+        this.mazeBuilder = mazeBuilder;
         var camera = new OrthographicCamera();
         //camera.zoom = 1.5f; // Set camera zoom for a closer view
         backgroundTexture = new Texture("C:\\Users\\emirh\\IdeaProjects\\fophn2324infun2324projectworkx-g38\\assets\\dene2.png");
@@ -65,6 +68,9 @@ public class MenuScreen implements Screen {
         startGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                if (mazeBuilder.currentMazeIndex != 0 && mazeBuilder.currentMazeIndex != 1 && mazeBuilder.currentMazeIndex != 2 && mazeBuilder.currentMazeIndex != 3 && mazeBuilder.currentMazeIndex != 4) {
+                    mazeBuilder.setCurrentMazeIndex(0);
+                }
                 game.goToGame(); // Change to the game screen when button is pressed
             }
         });
@@ -138,43 +144,53 @@ public class MenuScreen implements Screen {
         selectMapButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                selectMapButton.add(level_1, level_2, level_3, level_4, level_5);
-                selectMapButton.setText("");
-                super.clicked(event, x, y);
+                    selectMapButton.add(level_1, level_2, level_3, level_4, level_5);
+                    selectMapButton.setText("");
+                    super.clicked(event, x, y);
             }
         });
         level_1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                mazeBuilder.setCurrentMazeIndex(0);
                 game.goToMenu();
+                System.out.println(mazeBuilder.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                mazeBuilder.setCurrentMazeIndex(1);
                 game.goToMenu();
+                System.out.println(mazeBuilder.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                mazeBuilder.setCurrentMazeIndex(2);
                 game.goToMenu();
+                System.out.println(mazeBuilder.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                mazeBuilder.setCurrentMazeIndex(3);
                 game.goToMenu();
+                System.out.println(mazeBuilder.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_5.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                mazeBuilder.setCurrentMazeIndex(4);
                 game.goToMenu();
+                System.out.println(mazeBuilder.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
@@ -205,7 +221,7 @@ public class MenuScreen implements Screen {
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f)); // Update the stage
         batch.setProjectionMatrix(stage.getCamera().combined);
         batch.begin();
-        batch.draw(backgroundTexture,0, 0, stage.getViewport().getScreenWidth(), stage.getViewport().getScreenHeight());
+        batch.draw(backgroundTexture,0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
         stage.draw(); // Draw the stage
     }
