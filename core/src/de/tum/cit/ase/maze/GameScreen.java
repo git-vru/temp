@@ -14,21 +14,13 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class GameScreen implements Screen {
 
     private final MazeRunnerGame game;
-    private final MazeBuilder mazeBuilder;
     private final OrthographicCamera camera;
     private final BitmapFont font;
 
     private float sinusInput = 0f;
 
-    /**
-     * Constructor for GameScreen. Sets up the camera and font.
-     *
-     * @param game        The main game class, used to access global resources and methods.
-     * @param mazeBuilder
-     */
-    public GameScreen(MazeRunnerGame game, MazeBuilder mazeBuilder) {
+    public GameScreen(MazeRunnerGame game) {
         this.game = game;
-        this.mazeBuilder = mazeBuilder;
         // Create and configure the camera for the game view
         camera = new OrthographicCamera();
         camera.setToOrtho(false);
@@ -74,7 +66,7 @@ public class GameScreen implements Screen {
                 128
         );
         game.getSpriteBatch().end(); // Important to call this after drawing everything
-        mazeBuilder.create();
+        game.createMaze();
     }
 
     @Override

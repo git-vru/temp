@@ -24,17 +24,9 @@ public class MenuScreen implements Screen {
     private final Stage stage;
     private final Texture backgroundTexture;
     private final SpriteBatch batch;
-    private final MazeBuilder mazeBuilder;
 
 
-    /**
-     * Constructor for MenuScreen. Sets up the camera, viewport, stage, and UI elements.
-     *
-     * @param game        The main game class, used to access global resources and methods.
-     * @param mazeBuilder
-     */
-    public MenuScreen(MazeRunnerGame game, MazeBuilder mazeBuilder) {
-        this.mazeBuilder = mazeBuilder;
+    public MenuScreen(MazeRunnerGame game) {
         var camera = new OrthographicCamera();
         //camera.zoom = 1.5f; // Set camera zoom for a closer view
         backgroundTexture = new Texture("C:\\Users\\emirh\\IdeaProjects\\fophn2324infun2324projectworkx-g38\\assets\\dene2.png");
@@ -68,8 +60,8 @@ public class MenuScreen implements Screen {
         startGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if (mazeBuilder.currentMazeIndex != 0 && mazeBuilder.currentMazeIndex != 1 && mazeBuilder.currentMazeIndex != 2 && mazeBuilder.currentMazeIndex != 3 && mazeBuilder.currentMazeIndex != 4) {
-                    mazeBuilder.setCurrentMazeIndex(0);
+                if (game.currentMazeIndex != 0 && game.currentMazeIndex != 1 && game.currentMazeIndex != 2 && game.currentMazeIndex != 3 && game.currentMazeIndex != 4) {
+                    game.setCurrentMazeIndex(0);
                 }
                 game.goToGame(); // Change to the game screen when button is pressed
             }
@@ -152,45 +144,45 @@ public class MenuScreen implements Screen {
         level_1.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mazeBuilder.setCurrentMazeIndex(0);
+                game.setCurrentMazeIndex(0);
                 game.goToMenu();
-                System.out.println(mazeBuilder.currentMazeIndex);
+                System.out.println(game.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_2.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mazeBuilder.setCurrentMazeIndex(1);
+                game.setCurrentMazeIndex(1);
                 game.goToMenu();
-                System.out.println(mazeBuilder.currentMazeIndex);
+                System.out.println(game.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_3.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mazeBuilder.setCurrentMazeIndex(2);
+                game.setCurrentMazeIndex(2);
                 game.goToMenu();
-                System.out.println(mazeBuilder.currentMazeIndex);
+                System.out.println(game.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_4.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mazeBuilder.setCurrentMazeIndex(3);
+                game.setCurrentMazeIndex(3);
                 game.goToMenu();
-                System.out.println(mazeBuilder.currentMazeIndex);
+                System.out.println(game.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
         level_5.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                mazeBuilder.setCurrentMazeIndex(4);
+                game.setCurrentMazeIndex(4);
                 game.goToMenu();
-                System.out.println(mazeBuilder.currentMazeIndex);
+                System.out.println(game.currentMazeIndex);
                 super.clicked(event, x, y);
             }
         });
